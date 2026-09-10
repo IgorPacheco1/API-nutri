@@ -8,6 +8,9 @@ import jakarta.persistence.*;
 public class MacroNutriente {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id_macros")
+    private int id;
+
     @Column(name = "nome_macros")
     private String nomeMacros;
 
