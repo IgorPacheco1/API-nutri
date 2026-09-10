@@ -1,9 +1,13 @@
 package br.com.igorpacheco.apinutri.model;
 
 import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.Setter;
 
 @Entity
 @Table(name = "micro_nutrientes")
+@Getter
+@Setter
 
 public class MicroNutriente {
     @Id
