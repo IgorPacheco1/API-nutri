@@ -1,4 +1,4 @@
 package br.com.igorpacheco.apinutri.repository;
 
-public interface AlimentoRepository {
+public interface AlimentoMicroRepository {
 }
