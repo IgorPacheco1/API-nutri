@@ -1,4 +1,13 @@
 package br.com.igorpacheco.apinutri.repository;
 
-public interface AlimentoMacroRepository {
+import br.com.igorpacheco.apinutri.model.Alimento;
+import br.com.igorpacheco.apinutri.model.AlimentoMacro;
+import br.com.igorpacheco.apinutri.model.AlimentoMacroId;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+import java.util.List;
+
+public interface AlimentoMacroRepository extends JpaRepository<AlimentoMacro, AlimentoMacroId> {
+
+
 }
