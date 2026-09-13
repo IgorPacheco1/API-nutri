@@ -15,7 +15,10 @@ import org.springframework.stereotype.Component;
 
 import java.io.InputStreamReader;
 import java.io.Reader;
+import java.io.StringReader;
 import java.math.BigDecimal;
+import java.nio.charset.StandardCharsets;
+import java.text.Normalizer;
 import java.util.Optional;
 
 @Component
@@ -44,13 +47,20 @@ public class TacoCsvImporter implements CommandLineRunner {
         if (alimentoRepository.count() > 0) {
             return;
         }
-        try (Reader reader = new InputStreamReader(
-                new ClassPathResource("data/taco.csv").getInputStream())) {
+        String conteudoArquivo = new String(
+                new ClassPathResource("data/alimentos.csv").getInputStream().readAllBytes(),
+                StandardCharsets.UTF_8
+        );
+        conteudoArquivo = Normalizer.normalize(conteudoArquivo, Normalizer.Form.NFC);
+        conteudoArquivo = conteudoArquivo.replace('\u00A0', ' ');
+
+        try (StringReader reader = new StringReader(conteudoArquivo)){
 
             CSVParser parser = CSVFormat.newFormat('\t')
                     .withFirstRecordAsHeader()
                     .parse(reader);
 
+            parser.getHeaderNames().forEach(h -> System.out.println("[" + h + "]"));
             for (CSVRecord record : parser) {
                 String nomeAlimento = record.get("Descrição dos alimentos");
                 BigDecimal kcalAlimento = new BigDecimal(record.get("Energia..kcal."));
