@@ -19,8 +19,8 @@ public class AlimentoMicro {
     private AlimentoMicroId id;
 
     @ManyToOne
-    @MapsId("idAlimentos")
-    @JoinColumn(name = "id_alimentos")
+    @MapsId("idAlimento")
+    @JoinColumn(name = "id_alimento")
     private Alimento alimento;
 
     @ManyToOne
