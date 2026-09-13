@@ -4,6 +4,8 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.math.BigDecimal;
+
 @Entity
 @Table(name = "alimentos")
 @Getter
@@ -18,5 +20,5 @@ public class Alimento {
     private String nomeAlimento;
 
     @Column(name = "calorias_por_100g")
-    private double caloriasPor100g;
+    private BigDecimal caloriasPor100g;
 }
