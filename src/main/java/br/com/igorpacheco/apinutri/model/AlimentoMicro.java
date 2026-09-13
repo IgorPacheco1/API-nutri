@@ -7,6 +7,8 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.springframework.jmx.export.annotation.ManagedNotification;
 
+import java.math.BigDecimal;
+
 @Entity
 @Table(name = "alimento_micros")
 @Getter
@@ -29,6 +31,6 @@ public class AlimentoMicro {
     private MicroNutriente microNutriente;
 
     @Column(name = "gramas_por_100g")
-    private Double gramasPor100g;
+    private BigDecimal gramasPor100g;
 
 }
