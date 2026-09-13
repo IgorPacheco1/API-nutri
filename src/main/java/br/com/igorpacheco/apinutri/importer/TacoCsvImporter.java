@@ -65,7 +65,8 @@ public class TacoCsvImporter implements CommandLineRunner {
             CSVParser parser = format.parse(reader);
             for (CSVRecord record : parser) {
                 String nomeAlimento = record.get("Descrição dos alimentos");
-                BigDecimal kcalAlimento = new BigDecimal(record.get("Energia..kcal."));
+                Double kcalValor = converterValorNutrientes(record.get("Energia..kcal."));
+                BigDecimal kcalAlimento = (kcalValor != null) ? BigDecimal.valueOf(kcalValor) : null;
                 Double proteinaAlimento = converterValorNutrientes(record.get("Proteína..g."));
 
                 Alimento alimento = new Alimento();
