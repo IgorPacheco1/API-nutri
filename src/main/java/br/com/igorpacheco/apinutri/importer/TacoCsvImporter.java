@@ -56,11 +56,13 @@ public class TacoCsvImporter implements CommandLineRunner {
 
         try (StringReader reader = new StringReader(conteudoArquivo)){
 
-            CSVParser parser = CSVFormat.newFormat('\t')
-                    .withFirstRecordAsHeader()
-                    .parse(reader);
+            CSVFormat format = CSVFormat.DEFAULT.builder()
+                    .setHeader()
+                    .setSkipHeaderRecord(true)
+                    .setTrim(true)
+                    .build();
 
-            parser.getHeaderNames().forEach(h -> System.out.println("[" + h + "]"));
+            CSVParser parser = format.parse(reader);
             for (CSVRecord record : parser) {
                 String nomeAlimento = record.get("Descrição dos alimentos");
                 BigDecimal kcalAlimento = new BigDecimal(record.get("Energia..kcal."));
