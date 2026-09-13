@@ -1,0 +1,12 @@
+# application-local.yml.example
+spring:
+  application:
+    name: API-nutri
+  datasource:
+    url: jdbc:postgresql://localhost:/
+    username: user
+    password: senha
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    hibernate:
+      ddl-auto: validate
