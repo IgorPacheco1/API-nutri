@@ -1,12 +1,10 @@
 package br.com.igorpacheco.apinutri.controller;
 
 import br.com.igorpacheco.apinutri.dto.AlimentoResumoDTO;
+import br.com.igorpacheco.apinutri.dto.CalculoRequestDTO;
 import br.com.igorpacheco.apinutri.service.AlimentoService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -20,5 +18,10 @@ public class AlimentoController {
     @GetMapping
     public List<AlimentoResumoDTO> buscar(@RequestParam String nome) {
         return alimentoService.buscarPorNome(nome);
+    }
+
+    @PostMapping("/calculo")
+    public CalculoRequestDTO calcular(@RequestBody CalculoRequestDTO request) {
+        return alimentoService.calcular(request);
     }
 }
