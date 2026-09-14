@@ -1,9 +1,6 @@
 package br.com.igorpacheco.apinutri.importer;
 
-import br.com.igorpacheco.apinutri.model.Alimento;
-import br.com.igorpacheco.apinutri.model.AlimentoMacro;
-import br.com.igorpacheco.apinutri.model.AlimentoMacroId;
-import br.com.igorpacheco.apinutri.model.MacroNutriente;
+import br.com.igorpacheco.apinutri.model.*;
 import br.com.igorpacheco.apinutri.repository.*;
 import lombok.RequiredArgsConstructor;
 import org.apache.commons.csv.CSVFormat;
@@ -61,6 +58,24 @@ public class TacoCsvImporter implements CommandLineRunner {
         alimentoMacroRepository.save(alimentoMacro);
 
     }
+
+    private void processarMicro(CSVRecord record,String colunaCsv, String nomeMicro, Alimento alimentoSalvo){
+
+        Double valor = converterValorNutrientes(record.get(colunaCsv));
+        if (valor == null){
+            return;
+        }
+
+        MicroNutriente micro = microNutrienteRepository.findByNomeMicros(nomeMicro).orElseThrow(() -> new RuntimeException("Micronutriente " + nomeMicro + " não cadastrado") );
+        AlimentoMicroId id = new AlimentoMicroId(alimentoSalvo.getIdAlimento(), micro.getId());
+        AlimentoMicro alimentoMicro = new AlimentoMicro();
+        alimentoMicro.setId(id);
+        alimentoMicro.setAlimento(alimentoSalvo);
+        alimentoMicro.setMicroNutriente(micro);
+        alimentoMicroRepository.save(alimentoMicro);
+
+    }
+
     @Override
     public void run(String... strings) throws Exception {
         if (alimentoRepository.count() > 0) {
