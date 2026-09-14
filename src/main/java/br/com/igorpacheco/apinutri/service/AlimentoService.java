@@ -19,4 +19,6 @@ public class AlimentoService {
                 .map(a -> new AlimentoResumoDTO(a.getIdAlimento(), a.getNomeAlimento()))
                 .toList();
     }
+
+    //preciso adicionar o metodo para fazer o calculo
 }

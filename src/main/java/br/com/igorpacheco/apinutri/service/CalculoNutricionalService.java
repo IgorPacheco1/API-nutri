@@ -30,7 +30,7 @@ public class CalculoNutricionalService {
         BigDecimal totalCarboidratos = BigDecimal.ZERO;
         BigDecimal totalGorduras = BigDecimal.ZERO;
 
-        Map<String, BigDecimal> totalMicros = new HashMap<>();
+        Map<String, BigDecimal> totalMicros = new HashMap<>(); //problema está na quantidade de argumentos passados
 
         for (ItemCalculoDTO item : request.itens()) {
 
