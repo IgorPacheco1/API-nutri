@@ -42,6 +42,25 @@ public class TacoCsvImporter implements CommandLineRunner {
         }
         return Double.parseDouble(valorTexto);
     }
+
+    private void processarMacro(CSVRecord record, String colunaCSV, String nomeMacro, Alimento alimentoSalvo){
+
+        Double valor = converterValorNutrientes(record.get(colunaCSV));
+        if (valor == null){
+            return;
+        }
+        MacroNutriente macro = macroNutrienteRepository.findByNomeMacros(nomeMacro).orElseThrow(() -> new RuntimeException("Macronutriente" + nomeMacro + "não cadastrado"));
+
+        AlimentoMacroId id = new AlimentoMacroId(alimentoSalvo.getIdAlimento(), macro.getIdMacros());
+
+        AlimentoMacro  alimentoMacro = new AlimentoMacro();
+        alimentoMacro.setId(id);
+        alimentoMacro.setAlimento(alimentoSalvo);
+        alimentoMacro.setMacroNutriente(macro);
+        alimentoMacro.setGramasPor100g(BigDecimal.valueOf(valor));
+        alimentoMacroRepository.save(alimentoMacro);
+
+    }
     @Override
     public void run(String... strings) throws Exception {
         if (alimentoRepository.count() > 0) {
