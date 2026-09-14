@@ -53,15 +53,12 @@ public class CalculoNutricionalService {
             }
 
             for (AlimentoMicro amic : alimentoMicroRepository.findByAlimento_IdAlimento(item.idAlimento())) {
-                BigDecimal valor = amic.getMicrogramasPor100g().multiply(proporcao);
+                BigDecimal valor = amic.getGramasPor100g().multiply(proporcao);
                 totalMicros.merge(amic.getMicroNutriente().getNomeMicros(), valor, BigDecimal::add);
             }
         }
 
-        return new CalculoResponseDTO(
-                totalCalorias,
-                new MacrosDTO(totalProteinas, totalCarboidratos, totalGorduras),
-                totalMicros
+        return new CalculoResponseDTO(totalCalorias, new MacrosDTO(totalProteinas, totalCarboidratos, totalGorduras), totalMicros
         );
     }
 }
