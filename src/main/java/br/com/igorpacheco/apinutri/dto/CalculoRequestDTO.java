@@ -1,4 +1,6 @@
 package br.com.igorpacheco.apinutri.dto;
 
-public class CalculoRequestDTO {
+import java.util.List;
+
+public record CalculoRequestDTO(List<ItemCalculoDTO> itens) {
 }
