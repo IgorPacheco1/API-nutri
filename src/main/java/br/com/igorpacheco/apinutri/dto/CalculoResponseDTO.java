@@ -1,4 +1,6 @@
 package br.com.igorpacheco.apinutri.dto;
 
-public class CalculoResponseDTO {
+import java.math.BigDecimal;
+
+public record CalculoResponseDTO(BigDecimal totalCalorias, MacrosDTO macros) {
 }
