@@ -9,5 +9,5 @@ import java.util.List;
 
 public interface AlimentoMacroRepository extends JpaRepository<AlimentoMacro, AlimentoMacroId> {
 
-
+    List<AlimentoMacro> findByAlimento_IdAlimento(Integer idAlimento);
 }
