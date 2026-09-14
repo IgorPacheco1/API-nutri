@@ -109,7 +109,7 @@ public class TacoCsvImporter implements CommandLineRunner {
                 Alimento alimentosalvo = alimentoRepository.save(alimento);
 
                 processarMacro(record, "Proteína..g.", "Proteína", alimentosalvo);
-                processarMacro(record, "Lipídeos..g.", "Lipídios", alimentosalvo);
+                processarMacro(record, "Lipídeos..g.", "Lipídeos", alimentosalvo);
                 processarMacro(record, "Carboidrato..g.", "Carboidrato", alimentosalvo);
 
                 processarMicro(record, "Colesterol..mg.", "Colesterol", alimentosalvo);
