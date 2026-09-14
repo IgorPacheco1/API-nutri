@@ -46,7 +46,7 @@ public class TacoCsvImporter implements CommandLineRunner {
         if (valor == null){
             return;
         }
-        MacroNutriente macro = macroNutrienteRepository.findByNomeMacros(nomeMacro).orElseThrow(() -> new RuntimeException("Macronutriente" + nomeMacro + "não cadastrado"));
+        MacroNutriente macro = macroNutrienteRepository.findByNomeMacros(nomeMacro).orElseThrow(() -> new RuntimeException("Macronutriente " + nomeMacro + " não cadastrado"));
 
         AlimentoMacroId id = new AlimentoMacroId(alimentoSalvo.getIdAlimento(), macro.getIdMacros());
 
@@ -72,6 +72,7 @@ public class TacoCsvImporter implements CommandLineRunner {
         alimentoMicro.setId(id);
         alimentoMicro.setAlimento(alimentoSalvo);
         alimentoMicro.setMicroNutriente(micro);
+        alimentoMicro.setGramasPor100g(BigDecimal.valueOf(valor));
         alimentoMicroRepository.save(alimentoMicro);
 
     }
@@ -109,7 +110,7 @@ public class TacoCsvImporter implements CommandLineRunner {
                 Alimento alimentosalvo = alimentoRepository.save(alimento);
 
                 processarMacro(record, "Proteína..g.", "Proteína", alimentosalvo);
-                processarMacro(record, "Lipídeos..g.", "Lipídeos", alimentosalvo);
+                processarMacro(record, "Lipídeos..g.", "Lipídios", alimentosalvo);
                 processarMacro(record, "Carboidrato..g.", "Carboidrato", alimentosalvo);
 
                 processarMicro(record, "Colesterol..mg.", "Colesterol", alimentosalvo);
