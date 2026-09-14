@@ -108,23 +108,28 @@ public class TacoCsvImporter implements CommandLineRunner {
                 alimento.setCaloriasPor100g(kcalAlimento);
                 Alimento alimentosalvo = alimentoRepository.save(alimento);
 
-                if (proteinaAlimento != null) {
-                    MacroNutriente macroProteina = macroNutrienteRepository.findByNomeMacros("Proteína")
-                            .orElseThrow(() -> new RuntimeException("Macronutriente 'Proteína' não cadastrado"));
+                processarMacro(record, "Proteína..g.", "Proteína", alimentosalvo);
+                processarMacro(record, "Lipídeos..g.", "Lipídios", alimentosalvo);
+                processarMacro(record, "Carboidrato..g.", "Carboidrato", alimentosalvo);
 
-                    AlimentoMacroId id = new AlimentoMacroId(
-                            alimentosalvo.getIdAlimento(),
-                            macroProteina.getIdMacros()
-                    );
+                processarMicro(record, "Colesterol..mg.", "Colesterol", alimentosalvo);
+                processarMicro(record, "Cálcio..mg.", "Cálcio", alimentosalvo);
+                processarMicro(record, "Magnésio..mg.", "Magnésio", alimentosalvo);
+                processarMicro(record, "Manganês..mg.", "Manganês", alimentosalvo);
+                processarMicro(record, "Fósforo..mg.", "Fósforo", alimentosalvo);
+                processarMicro(record, "Ferro..mg.", "Ferro", alimentosalvo);
+                processarMicro(record, "Sódio..mg.", "Sódio", alimentosalvo);
+                processarMicro(record, "Potássio..mg.", "Potássio", alimentosalvo);
+                processarMicro(record, "Cobre..mg.", "Cobre", alimentosalvo);
+                processarMicro(record, "Zinco..mg.", "Zinco", alimentosalvo);
+                processarMicro(record, "RAE..mcg.", "Vitamina A", alimentosalvo);
+                processarMicro(record, "Tiamina..mg.", "Tiamina", alimentosalvo);
+                processarMicro(record, "Riboflavina..mg.", "Riboflavina", alimentosalvo);
+                processarMicro(record, "Piridoxina..mg.", "Piridoxina", alimentosalvo);
+                processarMicro(record, "Niacina..mg.", "Niacina", alimentosalvo);
+                processarMicro(record, "Vitamina.C..mg.", "Vitamina C", alimentosalvo);
 
-                    AlimentoMacro alimentoMacro = new AlimentoMacro();
-                    alimentoMacro.setId(id);
-                    alimentoMacro.setAlimento(alimentosalvo);
-                    alimentoMacro.setMacroNutriente(macroProteina);
-                    alimentoMacro.setGramasPor100g(BigDecimal.valueOf(proteinaAlimento));
-
-                    alimentoMacroRepository.save(alimentoMacro);
-                }
+            }
 
 
 
