@@ -36,7 +36,7 @@ public class CalculoNutricionalService {
         for (ItemCalculoDTO item : request.itens()) {
 
             Alimento alimento = alimentoRepository.findById(item.idAlimento())
-                    .orElseThrow(() -> new RecusoNaoEncontradoException("Alimento não encontrado: " + item.idAlimento()));
+                    .orElseThrow(() -> new RecusoNaoEncontradoException("Não temos esse alimento cadastrado no nosso database: " + item.idAlimento()));
 
             BigDecimal proporcao = item.quantidadeGramas().divide(BigDecimal.valueOf(100));
 
