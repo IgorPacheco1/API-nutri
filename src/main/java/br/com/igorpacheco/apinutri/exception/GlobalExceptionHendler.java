@@ -1,4 +1,3 @@
-
 package br.com.igorpacheco.apinutri.exception;
 
 import br.com.igorpacheco.apinutri.dto.ErroResponseDTO;

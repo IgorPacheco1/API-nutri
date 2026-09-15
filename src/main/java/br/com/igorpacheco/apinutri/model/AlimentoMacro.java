@@ -10,7 +10,8 @@ import java.math.BigDecimal;
 
 @Entity
 @Table(name = "alimento_macros")
-@Getter @Setter
+@Getter
+@Setter
 @NoArgsConstructor
 @AllArgsConstructor
 public class AlimentoMacro {

@@ -10,4 +10,5 @@ public record ItemCalculoDTO(
 
         @Schema(description = "Quantidade em gramas", example = "150")
         BigDecimal quantidadeGramas
-) {}
+) {
+}
