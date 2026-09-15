@@ -20,8 +20,4 @@ public class AlimentoController {
         return alimentoService.buscarPorNome(nome);
     }
 
-    @PostMapping("/calculo")
-    public CalculoRequestDTO calcular(@RequestBody CalculoRequestDTO request) {
-        return alimentoService.calcular(request);
-    }
 }
