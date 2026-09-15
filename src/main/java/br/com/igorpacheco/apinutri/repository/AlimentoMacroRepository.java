@@ -1,6 +1,5 @@
 package br.com.igorpacheco.apinutri.repository;
 
-import br.com.igorpacheco.apinutri.model.Alimento;
 import br.com.igorpacheco.apinutri.model.AlimentoMacro;
 import br.com.igorpacheco.apinutri.model.AlimentoMacroId;
 import org.springframework.data.jpa.repository.JpaRepository;

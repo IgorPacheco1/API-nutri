@@ -10,13 +10,10 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.stereotype.Component;
 
-import java.io.InputStreamReader;
-import java.io.Reader;
 import java.io.StringReader;
 import java.math.BigDecimal;
 import java.nio.charset.StandardCharsets;
 import java.text.Normalizer;
-import java.util.Optional;
 
 @Component
 @RequiredArgsConstructor
@@ -29,28 +26,27 @@ public class TacoCsvImporter implements CommandLineRunner {
     private final MicroNutrienteRepository microNutrienteRepository;
 
 
-
-    private Double converterValorNutrientes(String valorTexto){
-        if (valorTexto.equals("NA")){
+    private Double converterValorNutrientes(String valorTexto) {
+        if (valorTexto.equals("NA")) {
             return null;
         }
-        if (valorTexto.equals("Tr")){
+        if (valorTexto.equals("Tr")) {
             return 0.0;
         }
         return Double.parseDouble(valorTexto);
     }
 
-    private void processarMacro(CSVRecord record, String colunaCSV, String nomeMacro, Alimento alimentoSalvo){
+    private void processarMacro(CSVRecord record, String colunaCSV, String nomeMacro, Alimento alimentoSalvo) {
 
         Double valor = converterValorNutrientes(record.get(colunaCSV));
-        if (valor == null){
+        if (valor == null) {
             return;
         }
         MacroNutriente macro = macroNutrienteRepository.findByNomeMacros(nomeMacro).orElseThrow(() -> new RuntimeException("Macronutriente " + nomeMacro + " não cadastrado"));
 
         AlimentoMacroId id = new AlimentoMacroId(alimentoSalvo.getIdAlimento(), macro.getIdMacros());
 
-        AlimentoMacro  alimentoMacro = new AlimentoMacro();
+        AlimentoMacro alimentoMacro = new AlimentoMacro();
         alimentoMacro.setId(id);
         alimentoMacro.setAlimento(alimentoSalvo);
         alimentoMacro.setMacroNutriente(macro);
@@ -59,14 +55,14 @@ public class TacoCsvImporter implements CommandLineRunner {
 
     }
 
-    private void processarMicro(CSVRecord record,String colunaCsv, String nomeMicro, Alimento alimentoSalvo){
+    private void processarMicro(CSVRecord record, String colunaCsv, String nomeMicro, Alimento alimentoSalvo) {
 
         Double valor = converterValorNutrientes(record.get(colunaCsv));
-        if (valor == null){
+        if (valor == null) {
             return;
         }
 
-        MicroNutriente micro = microNutrienteRepository.findByNomeMicros(nomeMicro).orElseThrow(() -> new RuntimeException("Micronutriente " + nomeMicro + " não cadastrado") );
+        MicroNutriente micro = microNutrienteRepository.findByNomeMicros(nomeMicro).orElseThrow(() -> new RuntimeException("Micronutriente " + nomeMicro + " não cadastrado"));
         AlimentoMicroId id = new AlimentoMicroId(alimentoSalvo.getIdAlimento(), micro.getId());
         AlimentoMicro alimentoMicro = new AlimentoMicro();
         alimentoMicro.setId(id);
@@ -89,7 +85,7 @@ public class TacoCsvImporter implements CommandLineRunner {
         conteudoArquivo = Normalizer.normalize(conteudoArquivo, Normalizer.Form.NFC);
         conteudoArquivo = conteudoArquivo.replace('\u00A0', ' ');
 
-        try (StringReader reader = new StringReader(conteudoArquivo)){
+        try (StringReader reader = new StringReader(conteudoArquivo)) {
 
             CSVFormat format = CSVFormat.DEFAULT.builder()
                     .setHeader()
@@ -133,7 +129,6 @@ public class TacoCsvImporter implements CommandLineRunner {
             }
 
 
-
-            }
         }
     }
+}

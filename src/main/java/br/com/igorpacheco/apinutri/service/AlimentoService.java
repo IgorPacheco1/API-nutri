@@ -3,7 +3,6 @@ package br.com.igorpacheco.apinutri.service;
 import br.com.igorpacheco.apinutri.dto.AlimentoResumoDTO;
 import br.com.igorpacheco.apinutri.repository.AlimentoRepository;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -19,5 +18,4 @@ public class AlimentoService {
                 .map(a -> new AlimentoResumoDTO(a.getIdAlimento(), a.getNomeAlimento()))
                 .toList();
     }
-
 }

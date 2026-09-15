@@ -24,7 +24,7 @@ public class CalculoNutricionalService {
     private final AlimentoMacroRepository alimentoMacroRepository;
     private final AlimentoMicroRepository alimentoMicroRepository;
 
-    public CalculoResponseDTO calcular(CalculoRequestDTO request){
+    public CalculoResponseDTO calcular(CalculoRequestDTO request) {
         BigDecimal totalCalorias = BigDecimal.ZERO;
         BigDecimal totalProteinas = BigDecimal.ZERO;
         BigDecimal totalCarboidratos = BigDecimal.ZERO;
