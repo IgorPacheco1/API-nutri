@@ -20,5 +20,4 @@ public class AlimentoService {
                 .toList();
     }
 
-    //preciso adicionar o metodo para fazer o calculo
 }
