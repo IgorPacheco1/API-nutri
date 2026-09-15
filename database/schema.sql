@@ -37,7 +37,7 @@ CREATE TABLE alimento_micros (
 -- Catálogo de nutrientes (necessário antes de rodar a aplicação,
 -- já que o importador busca essas entradas pelo nome)
 INSERT INTO macro_nutrientes (nome_macros) VALUES
-                                               ('Proteína'), ('Lipídios'), ('Carboidrato');
+                                               ('Proteína'), ('Lipídeos'), ('Carboidrato');
 
 INSERT INTO micro_nutrientes (nome_micros) VALUES
                                                ('Colesterol'), ('Cálcio'), ('Magnésio'), ('Manganês'), ('Fósforo'),
