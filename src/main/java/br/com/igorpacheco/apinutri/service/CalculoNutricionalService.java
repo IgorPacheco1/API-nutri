@@ -4,6 +4,7 @@ import br.com.igorpacheco.apinutri.dto.CalculoRequestDTO;
 import br.com.igorpacheco.apinutri.dto.CalculoResponseDTO;
 import br.com.igorpacheco.apinutri.dto.ItemCalculoDTO;
 import br.com.igorpacheco.apinutri.dto.MacrosDTO;
+import br.com.igorpacheco.apinutri.exception.RecusoNaoEncontradoException;
 import br.com.igorpacheco.apinutri.model.Alimento;
 import br.com.igorpacheco.apinutri.model.AlimentoMacro;
 import br.com.igorpacheco.apinutri.model.AlimentoMicro;
@@ -35,7 +36,7 @@ public class CalculoNutricionalService {
         for (ItemCalculoDTO item : request.itens()) {
 
             Alimento alimento = alimentoRepository.findById(item.idAlimento())
-                    .orElseThrow(() -> new RuntimeException("Alimento não encontrado: " + item.idAlimento()));
+                    .orElseThrow(() -> new RecusoNaoEncontradoException("Alimento não encontrado: " + item.idAlimento()));
 
             BigDecimal proporcao = item.quantidadeGramas().divide(BigDecimal.valueOf(100));
 
