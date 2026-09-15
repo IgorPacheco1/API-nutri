@@ -48,7 +48,7 @@ public class CalculoNutricionalService {
                 switch (am.getMacroNutriente().getNomeMacros()) {
                     case "Proteína" -> totalProteinas = totalProteinas.add(valor);
                     case "Carboidrato" -> totalCarboidratos = totalCarboidratos.add(valor);
-                    case "Lipídeos" -> totalGorduras = totalGorduras.add(valor);
+                    case "Lipídios" -> totalGorduras = totalGorduras.add(valor);
                 }
             }
 
