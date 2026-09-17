@@ -68,7 +68,7 @@ public class TacoCsvImporter implements CommandLineRunner {
         alimentoMicro.setId(id);
         alimentoMicro.setAlimento(alimentoSalvo);
         alimentoMicro.setMicroNutriente(micro);
-        alimentoMicro.setGramasPor100g(BigDecimal.valueOf(valor));
+        alimentoMicro.setMicrogramasPor100g(BigDecimal.valueOf(valor));
         alimentoMicroRepository.save(alimentoMicro);
 
     }
