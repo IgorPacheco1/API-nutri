@@ -54,7 +54,7 @@ public class CalculoNutricionalService {
             }
 
             for (AlimentoMicro amic : alimentoMicroRepository.findByAlimento_IdAlimento(item.idAlimento())) {
-                BigDecimal valor = amic.getGramasPor100g().multiply(proporcao);
+                BigDecimal valor = amic.getMicrogramasPor100g().multiply(proporcao);
                 totalMicros.merge(amic.getMicroNutriente().getNomeMicros(), valor, BigDecimal::add);
             }
         }
