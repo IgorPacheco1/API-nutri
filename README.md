@@ -59,6 +59,21 @@ automaticamente a partir de `src/main/resources/data/alimentos.csv`.
 Dados nutricionais baseados na Tabela Brasileira de Composição de
 Alimentos (TACO), desenvolvida pelo NEPA/UNICAMP.
 
+## 🔗 API em produção
+
+- **Base URL**: [ https://api-nutri-uu2q.onrender.com](https://api-nutri-uu2q.onrender.com)
+- **Documentação interativa (Swagger)**: [https://api-nutri-uu2q.onrender.com/swagger-ui/index.html](https://api-nutri-uu2q.onrender.com/swagger-ui/index.html)
+
+> Nota: o serviço está no plano gratuito do Render, que "dorme" após
+> período de inatividade. A primeira requisição depois de um tempo parado
+> pode levar de 30 a 50 segundos para responder — isso é esperado.
+
 ## Status do projeto
 
-Em desenvolvimento — próximas etapas: deploy.
+Concluído: modelagem de dados, importação de dados reais (TACO),
+endpoints de busca e cálculo, testes automatizados, documentação e
+deploy em produção.
+
+### Melhorias futuras
+- Inserção em lote (batch insert) no importador, para reduzir o tempo de
+  carga inicial em produção
