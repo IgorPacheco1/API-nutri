@@ -29,7 +29,7 @@ public class AlimentoMicro {
     @JoinColumn(name = "id_micros")
     private MicroNutriente microNutriente;
 
-    @Column(name = "gramas_por_100g")
-    private BigDecimal gramasPor100g;
+    @Column(name = "microgramas_por_100g")
+    private BigDecimal microgramasPor100g;
 
 }
