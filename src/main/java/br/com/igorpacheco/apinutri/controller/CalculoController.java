@@ -5,6 +5,7 @@ import br.com.igorpacheco.apinutri.dto.CalculoResponseDTO;
 import br.com.igorpacheco.apinutri.service.CalculoNutricionalService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -21,8 +22,10 @@ public class CalculoController {
 
     @PostMapping
     @Operation(summary = "Calcula os nutrientes totais de uma refeição",
-            description = "Recebe uma lista de alimentos com suas quantidades em gramas e devolve o total de calorias, macronutrientes e micronutrientes")
-    public CalculoResponseDTO calcular(@RequestBody CalculoRequestDTO request) {
+            description = "Recebe uma lista de alimentos com suas quantidades em gramas e devolve o total de calorias, "
+                    + "macronutrientes (g) e micronutrientes (unidade em unidadesMicros). "
+                    + "Lista vazia, item sem idAlimento ou quantidade <= 0 ou > 10000 devolvem 400.")
+    public CalculoResponseDTO calcular(@Valid @RequestBody CalculoRequestDTO request) {
         return calculoNutricionalService.calcular(request);
     }
 }
