@@ -21,4 +21,8 @@ public class Alimento {
 
     @Column(name = "calorias_por_100g")
     private BigDecimal caloriasPor100g;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "id_categoria")
+    private Categoria categoria;
 }

@@ -17,4 +17,8 @@ public class MicroNutriente {
 
     @Column(name = "nome_micros")
     private String nomeMicros;
+
+    /** Unidade do valor guardado em alimento_micros: "mg" ou "mcg". */
+    @Column(name = "unidade", length = 10)
+    private String unidade;
 }
