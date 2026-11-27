@@ -1,12 +1,26 @@
-# application-local.yml.example
+# Copie para src/main/resources/application.yaml (ignorado pelo git)
+# e preencha com as credenciais do seu PostgreSQL local.
+server:
+  port: 8080
+
 spring:
   application:
     name: API-nutri
   datasource:
-    url: jdbc:postgresql://localhost:/
-    username: user
+    url: jdbc:postgresql://localhost:5432/api_nutri
+    username: usuario
     password: senha
     driver-class-name: org.postgresql.Driver
   jpa:
     hibernate:
       ddl-auto: validate
+
+# Opcional: estes valores já têm padrão em application.properties
+# e também podem vir de variáveis de ambiente.
+apinutri:
+  cors:
+    # APINUTRI_CORS_ORIGENS: origens liberadas no navegador, separadas por vírgula
+    origens: http://localhost:5173
+  importador:
+    # APINUTRI_IMPORTADOR_HABILITADO: importa/completa a TACO ao subir
+    habilitado: true

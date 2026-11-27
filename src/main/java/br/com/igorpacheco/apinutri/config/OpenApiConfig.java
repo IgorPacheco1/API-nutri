@@ -20,9 +20,15 @@ public class OpenApiConfig {
                                 Tabela TACO (UNICAMP) e calcula os totais nutricionais de uma \
                                 refeição a partir das porções informadas.
 
+                                Unidades: valores por 100 g; kcal, macronutrientes em gramas, \
+                                sódio e demais micronutrientes em mg (Vitamina A em mcg).
+
+                                O catálogo completo pode ser exportado em JSON, CSV ou como \
+                                script MySQL para carga no banco de outra aplicação.
+
                                 A API é stateless: não armazena refeições nem dados de usuário — \
                                 autenticação e persistência ficam a cargo da aplicação consumidora.""")
-                        .version("v1")
+                        .version("1.1.0")
                         .contact(new Contact()
                                 .name("Igor Pacheco")
                                 .url("https://www.linkedin.com/in/igor-pacheco1/")));
